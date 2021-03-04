@@ -7,16 +7,17 @@
 #include <modulesystem/Requirement.h>
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
+#include <viewpages/QmlViewStep.h>
 
 #include <QObject>
 
-class PLUGINDLLEXPORT LayoutViewStep : public Calamares::ViewStep
+class PLUGINDLLEXPORT LayoutViewStep : public Calamares::QmlViewStep
 {
     Q_OBJECT
     
     public:
     
-    explicit LayoutViewStep( QObject* parent = nullptr );
+    explicit LayoutViewStep(QObject* parent = nullptr);
     ~LayoutViewStep() override;
 
     QString prettyName() const override;
@@ -31,9 +32,11 @@ class PLUGINDLLEXPORT LayoutViewStep : public Calamares::ViewStep
 
     Calamares::JobList jobs() const override;
 
-    void setConfigurationMap( const QVariantMap& configurationMap ) override;
+    void setConfigurationMap(const QVariantMap& configurationMap) override;
 
     Calamares::RequirementsList checkRequirements() override;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( LayoutViewStepFactory )
 
 #endif

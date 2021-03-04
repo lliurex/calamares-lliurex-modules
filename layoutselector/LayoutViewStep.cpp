@@ -1,7 +1,9 @@
 
 #include "LayoutViewStep.hpp"
 
-LayoutViewStep::LayoutViewStep( QObject* parent)
+CALAMARES_PLUGIN_FACTORY_DEFINITION( LayoutViewStepFactory, registerPlugin< LayoutViewStep >(); )
+
+LayoutViewStep::LayoutViewStep(QObject* parent) : Calamares::QmlViewStep( parent )
 {
 }
 
@@ -9,7 +11,7 @@ LayoutViewStep:: ~LayoutViewStep()
 {
 }
 
-QString LayoutViewStep::prettyName()
+QString LayoutViewStep::prettyName() const
 {
     return tr("Default layout");
 }
@@ -19,27 +21,27 @@ QWidget* LayoutViewStep::widget()
     return nullptr;
 }
 
-bool LayoutViewStep::isNextEnabled()
+bool LayoutViewStep::isNextEnabled() const
 {
 }
 
-bool LayoutViewStep::isBackEnabled()
+bool LayoutViewStep::isBackEnabled() const
 {
 }
 
-bool LayoutViewStep::isAtBeginning()
+bool LayoutViewStep::isAtBeginning() const
 {
 }
 
-bool LayoutViewStep::isAtEnd()
+bool LayoutViewStep::isAtEnd() const
 {
 }
 
-Calamares::JobList LayoutViewStep::jobs()
+Calamares::JobList LayoutViewStep::jobs() const
 {
 }
 
-void LayoutViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+void LayoutViewStep::setConfigurationMap(const QVariantMap& configurationMap)
 {
 }
 
