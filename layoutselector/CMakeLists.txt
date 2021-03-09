@@ -9,7 +9,7 @@ calamares_add_plugin( layoutselector
         LayoutViewStep.cpp
         Config.cpp
     RESOURCES
-        layout.qrc
+        layoutselector.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
         KF5::CoreAddons

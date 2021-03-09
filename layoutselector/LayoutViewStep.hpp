@@ -3,6 +3,8 @@
 #ifndef LAYOUTVIEWSTEP_HPP
 #define LAYOUTVIEWSTEP_HPP
 
+#include "Config.hpp"
+
 #include <DllMacro.h>
 #include <modulesystem/Requirement.h>
 #include <utils/PluginFactory.h>
@@ -22,8 +24,6 @@ class PLUGINDLLEXPORT LayoutViewStep : public Calamares::QmlViewStep
 
     QString prettyName() const override;
 
-    QWidget* widget() override;
-
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;
 
@@ -35,6 +35,13 @@ class PLUGINDLLEXPORT LayoutViewStep : public Calamares::QmlViewStep
     void setConfigurationMap(const QVariantMap& configurationMap) override;
 
     Calamares::RequirementsList checkRequirements() override;
+    
+    QObject* getConfig() override;
+    
+    protected:
+    
+    Config* m_config;
+    
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( LayoutViewStepFactory )
