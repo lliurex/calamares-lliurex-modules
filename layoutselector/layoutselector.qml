@@ -24,17 +24,29 @@ QQC2.Pane
         width: parent.width-5; height: parent.height-5
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+        property var ratio: 0.15
         
         model: layoutsModel
         highlightFollowsCurrentItem: true
         
-        highlight: Rectangle { color: "#bfdcf1"; radius: 5 }
+        highlight: 
+            Rectangle { 
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "#bfdcf1"
+                radius: 5
+                //width: (1920*ratio)+10
+                //height:(1080*ratio)+32
+            }
+            
         focus: true
         
         delegate:
             Item {
-                width:200
-                height:140
+                id: itm
+                anchors.horizontalCenter: parent.horizontalCenter
+                
+                width:(1920*layoutsView.ratio)+64
+                height:(1080*layoutsView.ratio)+32
                 
                 //color: (layoutsModel.currentIndex==index) ? "#bfdcf1" : "#f9f9f9"
                 MouseArea {
@@ -43,13 +55,19 @@ QQC2.Pane
                 }
                     
                 Column {
-                    Image { 
-                        width: 192
-                        height: 108
+                    id: chld
+                    anchors.horizontalCenter: itm.horizontalCenter
+                    anchors.verticalCenter: itm.verticalCenter
+                    Image {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        width: 1920*layoutsView.ratio
+                        height: 1080*layoutsView.ratio
                         source: image
                     }
                     Text {
                         text: name
+                        //color: "#ffffff"
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
                 }
             }
