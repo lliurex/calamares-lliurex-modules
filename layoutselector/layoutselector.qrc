@@ -1,5 +1,7 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
     <file>layoutselector.qml</file>
+    <file>preview-classic.svg</file>
+    <file>preview-default.svg</file>
 </qresource>
 </RCC>
