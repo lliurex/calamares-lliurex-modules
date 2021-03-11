@@ -61,7 +61,12 @@ QQC2.Pane
                     
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: layoutsView.currentIndex = index
+                        onClicked: {
+                                layoutsView.currentIndex = index
+                                console.log(name);
+                                config.layout=name;
+                            }
+                        
                     }
                         
                     Column {

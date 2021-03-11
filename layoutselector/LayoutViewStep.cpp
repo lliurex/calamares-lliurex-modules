@@ -38,6 +38,11 @@ bool LayoutViewStep::isAtEnd() const
     return true;
 }
 
+void LayoutViewStep::onLeave()
+{
+    m_config->store();
+}
+
 Calamares::JobList LayoutViewStep::jobs() const
 {
     return Calamares::JobList();

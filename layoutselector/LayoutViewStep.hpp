@@ -29,6 +29,8 @@ class PLUGINDLLEXPORT LayoutViewStep : public Calamares::QmlViewStep
 
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
+    
+    void onLeave() override;
 
     Calamares::JobList jobs() const override;
 
