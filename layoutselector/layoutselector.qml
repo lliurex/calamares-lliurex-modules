@@ -1,5 +1,8 @@
 import QtQuick 2.6
+import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.6 as QQC2
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami 2.5 as Kirigami
 
 QQC2.Pane
 {
@@ -19,55 +22,64 @@ QQC2.Pane
         }
     }
     
-    ListView {
-        id: layoutsView
-        width: parent.width-5; height: parent.height-5
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        property var ratio: 0.15
+    ColumnLayout {
+        spacing: Kirigami.Units.smallSpacing
+        anchors.fill: parent
+        Text {
+            Layout.fillWidth: true
+            text: "Select a default layout"
+        }
         
-        model: layoutsModel
-        highlightFollowsCurrentItem: true
-        
-        highlight: 
-            Rectangle { 
-                anchors.horizontalCenter: parent.horizontalCenter
-                color: "#bfdcf1"
-                radius: 5
-                //width: (1920*ratio)+10
-                //height:(1080*ratio)+32
-            }
+        ListView {
+            id: layoutsView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             
-        focus: true
-        
-        delegate:
-            Item {
-                id: itm
-                anchors.horizontalCenter: parent.horizontalCenter
-                
-                width:(1920*layoutsView.ratio)+64
-                height:(1080*layoutsView.ratio)+32
-                
-                //color: (layoutsModel.currentIndex==index) ? "#bfdcf1" : "#f9f9f9"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: layoutsView.currentIndex = index
+            property var ratio: 0.15
+            
+            model: layoutsModel
+            highlightFollowsCurrentItem: true
+            
+            highlight:
+                Rectangle { 
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    color: "#bfdcf1"
+                    border.color: "#3daee9"
+                    border.width: 2
+                    radius: 5
                 }
+            
+            focus: true
+        
+            delegate:
+                Item {
+                    id: itm
+                    anchors.horizontalCenter: parent.horizontalCenter
                     
-                Column {
-                    id: chld
-                    anchors.horizontalCenter: itm.horizontalCenter
-                    anchors.verticalCenter: itm.verticalCenter
-                    Image {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        width: 1920*layoutsView.ratio
-                        height: 1080*layoutsView.ratio
-                        source: image
+                    width:(1920*layoutsView.ratio)+64
+                    height:(1080*layoutsView.ratio)+32
+                    
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: layoutsView.currentIndex = index
                     }
-                    Text {
-                        text: name
-                        //color: "#ffffff"
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        
+                    Column {
+                        id: chld
+                        anchors.horizontalCenter: itm.horizontalCenter
+                        anchors.verticalCenter: itm.verticalCenter
+                        spacing: Kirigami.Units.smallSpacing
+                        
+                        Image {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            width: 1920*layoutsView.ratio
+                            height: 1080*layoutsView.ratio
+                            source: image
+                        }
+                        Text {
+                            text: name
+                            anchors.horizontalCenter: parent.horizontalCenter
+                        }
                     }
                 }
             }
