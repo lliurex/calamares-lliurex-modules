@@ -36,5 +36,5 @@ include( CalamaresAddTranslations )
 
 set( Calamares_LIBRARIES calamares )
 
-#add_subdirectory(dummycpp)
 calamares_add_module_subdirectory( layoutselector )
+calamares_add_module_subdirectory( appselector )
