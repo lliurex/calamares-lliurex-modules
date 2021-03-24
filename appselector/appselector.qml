@@ -10,83 +10,139 @@ QQC2.Pane
     height: 400
     
     ListModel {
-        id: layoutsModel
+        id: appsModel
         ListElement {
-            name: "Classic"
-            image: "qrc:/preview-classic.svg"
-            }
-            
-            ListElement {
-            name: "Default"
-            image: "qrc:/preview-default.svg"
+            name: "Inkscape"
+            iconName: "inkscape"
+        }
+        
+        ListElement {
+            name: "Gimp"
+            iconName: "gimp"
+        }
+        
+        ListElement {
+            name: "Firefox"
+            iconName: "firefox"
+        }
+        
+        ListElement {
+            name: "OpenScad"
+            iconName: "openscad"
         }
     }
     
-    ColumnLayout {
-        spacing: Kirigami.Units.smallSpacing
-        anchors.fill: parent
-        Text {
-            Layout.fillWidth: true
-            text: "Select a default layout"
+    ListModel {
+        id: servicesModel
+        ListElement {
+            name: "Alfa"
+            iconName: "folder"
         }
         
-        ListView {
-            id: layoutsView
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            
-            property var ratio: 0.15
-            
-            model: layoutsModel
-            highlightFollowsCurrentItem: true
-            
-            highlight:
-                Rectangle { 
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    color: "#bfdcf1"
-                    border.color: "#3daee9"
-                    border.width: 2
-                    radius: 5
-                }
-            
-            focus: true
+        ListElement {
+            name: "Beta"
+            iconName: "trash"
+        }
+    }
+    
+    QQC2.StackView {
+        id: stack
         
-            delegate:
-                Item {
-                    id: itm
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    
-                    width:(1920*layoutsView.ratio)+64
-                    height:(1080*layoutsView.ratio)+32
-                    
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                                layoutsView.currentIndex = index
-                                console.log(name);
-                                config.layout=name;
-                            }
-                        
-                    }
-                        
-                    Column {
-                        id: chld
-                        anchors.horizontalCenter: itm.horizontalCenter
-                        anchors.verticalCenter: itm.verticalCenter
-                        spacing: Kirigami.Units.smallSpacing
-                        
-                        Image {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            width: 1920*layoutsView.ratio
-                            height: 1080*layoutsView.ratio
-                            source: image
-                        }
-                        Text {
-                            text: name
-                            anchors.horizontalCenter: parent.horizontalCenter
-                        }
-                    }
+        anchors.fill:parent
+        
+        //index: 0
+        initialItem: page1
+    }
+    
+    //Component.onCompleted: stack.push(page1)
+    
+    Connections {
+        target: config
+        
+        onStepChanged: {
+            console.log("miau");
+            console.log(stack.index);
+            console.log(stack.depth);
+            if (config.step==0) {
+                
+                
+                if (stack.index==-1) {
+                    stack.replace(page1,QQC2.StackView.PopTransition);
+                }
+                else {
+                    stack.replace(page1,QQC2.StackView.Immediate);
                 }
             }
+            if (config.step==1) {
+                stack.replace(page2,QQC2.StackView.PushTransition);
+            }
+        }
     }
+    
+    Component {
+        id: page1
+        
+        ColumnLayout {
+            spacing: Kirigami.Units.smallSpacing
+            anchors.fill: parent
+            QQC2.Label {
+                Layout.fillWidth: true
+                text: "All your base are belong to us"
+            }
+            
+            ListView {
+                id: layoutsView
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                
+                property var ratio: 0.15
+                
+                model: appsModel
+                
+                focus: true
+            
+                delegate:
+                    QQC2.CheckBox {
+                        text: name
+                        icon.name: iconName
+                        icon.width: 32
+                        icon.height: 32
+                    }
+                }
+        }
+    }
+    
+    Component {
+        id: page2
+        
+        ColumnLayout {
+            spacing: Kirigami.Units.smallSpacing
+            anchors.fill: parent
+            QQC2.Label {
+                Layout.fillWidth: true
+                text: "Select your destiny"
+            }
+            
+            ListView {
+                id: layoutsView
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                
+                property var ratio: 0.15
+                
+                model: servicesModel
+                
+                focus: true
+            
+                delegate:
+                    QQC2.CheckBox {
+                        text: name
+                        icon.name: iconName
+                        icon.width: 32
+                        icon.height: 32
+                    }
+                }
+        }
+    }
+    
 }

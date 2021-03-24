@@ -15,7 +15,7 @@ AppViewStep:: ~AppViewStep()
 
 QString AppViewStep::prettyName() const
 {
-    return tr("Default layout");
+    return tr("Extra goodies");
 }
 
 bool AppViewStep::isNextEnabled() const
@@ -30,20 +30,26 @@ bool AppViewStep::isBackEnabled() const
 
 void AppViewStep::next()
 {
+    m_config->m_step=1;
+    emit m_config->stepChanged();
+    qDebug()<<"next!";
 }
 
 void AppViewStep::back()
 {
+    m_config->m_step=0;
+    emit m_config->stepChanged();
+    qDebug()<<"back!";
 }
 
 bool AppViewStep::isAtBeginning() const
 {
-    return true;
+    return (m_config->m_step==0);
 }
 
 bool AppViewStep::isAtEnd() const
 {
-    return true;
+    return (m_config->m_step==1);
 }
 
 void AppViewStep::onLeave()
@@ -59,6 +65,7 @@ Calamares::JobList AppViewStep::jobs() const
 void AppViewStep::setConfigurationMap(const QVariantMap& configurationMap)
 {
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );
+    m_config->setConfigurationMap(configurationMap);
 }
 
 Calamares::RequirementsList AppViewStep::checkRequirements()

@@ -8,6 +8,7 @@
 
 Config::Config(QObject* parent) : QObject(parent)
 {
+    m_step=0;
 }
 
 void Config::store()
@@ -17,3 +18,9 @@ void Config::store()
     //qDebug()<<"storing layout "<<m_layout;
 }
 
+void Config::setConfigurationMap(const QVariantMap& configurationMap)
+{
+    for (auto k: configurationMap.keys()) {
+        qDebug()<<"key:"<<k<<"="<<configurationMap[k];
+    }
+}
