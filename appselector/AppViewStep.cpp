@@ -32,14 +32,12 @@ void AppViewStep::next()
 {
     m_config->m_step=1;
     emit m_config->stepChanged();
-    qDebug()<<"next!";
 }
 
 void AppViewStep::back()
 {
     m_config->m_step=0;
     emit m_config->stepChanged();
-    qDebug()<<"back!";
 }
 
 bool AppViewStep::isAtBeginning() const

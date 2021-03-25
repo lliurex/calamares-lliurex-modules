@@ -60,18 +60,9 @@ QQC2.Pane
         target: config
         
         onStepChanged: {
-            console.log("miau");
-            console.log(stack.index);
-            console.log(stack.depth);
+
             if (config.step==0) {
-                
-                
-                if (stack.index==-1) {
-                    stack.replace(page1,QQC2.StackView.PopTransition);
-                }
-                else {
-                    stack.replace(page1,QQC2.StackView.Immediate);
-                }
+                stack.replace(page1,QQC2.StackView.PopTransition);
             }
             if (config.step==1) {
                 stack.replace(page2,QQC2.StackView.PushTransition);
