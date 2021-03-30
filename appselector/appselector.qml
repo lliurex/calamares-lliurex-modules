@@ -88,14 +88,15 @@ QQC2.Pane
                 
                 property var ratio: 0.15
                 
-                model: appsModel
+                model: config.appsModel
                 
                 focus: true
             
                 delegate:
                     QQC2.CheckBox {
-                        text: name
-                        icon.name: iconName
+                        
+                        text: modelData.name
+                        icon.name: modelData.iconName
                         icon.width: 32
                         icon.height: 32
                     }

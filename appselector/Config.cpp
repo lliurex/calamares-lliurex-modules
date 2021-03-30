@@ -9,6 +9,9 @@
 Config::Config(QObject* parent) : QObject(parent)
 {
     m_step=0;
+    m_appsModel.append(new App("Alfa","A"));
+    m_appsModel.append(new App("Beta","B"));
+    
 }
 
 void Config::store()
