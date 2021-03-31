@@ -17,6 +17,8 @@ class App: public QObject
     public:
     
     QString m_name;
+    QString m_displayName;
+    QString m_description;
     QString m_iconName;
     bool m_checked;
     

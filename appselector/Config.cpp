@@ -15,7 +15,22 @@ Config::Config(QObject* parent) : QObject(parent)
 void Config::store()
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    //gs->insert( "LliurexDesktopLayout", m_layout );
+    QList<QVariant> apps;
+    
+    QList<QObject* >::const_iterator i = m_appsModel.begin();
+    
+    while(i!=m_appsModel.end()) {
+        
+        App* app = static_cast<App*>(*i);
+        
+        if (app->m_checked) {
+            apps.append(app->m_name);
+        }
+        
+        i++;
+    }
+    
+    gs->insert( "LliurexExtraApps", apps );
     //qDebug()<<"storing layout "<<m_layout;
 }
 
