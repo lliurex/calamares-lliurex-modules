@@ -9,42 +9,6 @@ QQC2.Pane
     width: 400
     height: 400
     
-    ListModel {
-        id: appsModel
-        ListElement {
-            name: "Inkscape"
-            iconName: "inkscape"
-        }
-        
-        ListElement {
-            name: "Gimp"
-            iconName: "gimp"
-        }
-        
-        ListElement {
-            name: "Firefox"
-            iconName: "firefox"
-        }
-        
-        ListElement {
-            name: "OpenScad"
-            iconName: "openscad"
-        }
-    }
-    
-    ListModel {
-        id: servicesModel
-        ListElement {
-            name: "Alfa"
-            iconName: "folder"
-        }
-        
-        ListElement {
-            name: "Beta"
-            iconName: "trash"
-        }
-    }
-    
     QQC2.StackView {
         id: stack
         
@@ -59,7 +23,7 @@ QQC2.Pane
     Connections {
         target: config
         
-        onStepChanged: {
+        function onStepChanged() {
 
             if (config.step==0) {
                 stack.replace(page1,QQC2.StackView.PopTransition);
@@ -75,10 +39,10 @@ QQC2.Pane
         
         ColumnLayout {
             spacing: Kirigami.Units.smallSpacing
-            anchors.fill: parent
+            //anchors.fill: parent
             QQC2.Label {
                 Layout.fillWidth: true
-                text: "All your base are belong to us"
+                text: "Select apps"
             }
             
             ListView {
@@ -99,6 +63,12 @@ QQC2.Pane
                         icon.name: modelData.iconName
                         icon.width: 32
                         icon.height: 32
+                        
+                        checked: modelData.checked
+                        
+                        onToggled: {
+                            modelData.checked=checked;
+                        }
                     }
                 }
         }
@@ -109,10 +79,10 @@ QQC2.Pane
         
         ColumnLayout {
             spacing: Kirigami.Units.smallSpacing
-            anchors.fill: parent
+            //anchors.fill: parent
             QQC2.Label {
                 Layout.fillWidth: true
-                text: "Select your destiny"
+                text: "Select services"
             }
             
             ListView {
@@ -122,16 +92,22 @@ QQC2.Pane
                 
                 property var ratio: 0.15
                 
-                model: servicesModel
+                model: config.servicesModel
                 
                 focus: true
             
                 delegate:
                     QQC2.CheckBox {
-                        text: name
-                        icon.name: iconName
+                        text: modelData.name
+                        icon.name: modelData.iconName
                         icon.width: 32
                         icon.height: 32
+                        
+                        checked: modelData.checked
+                        
+                        onToggled: {
+                            modelData.checked=checked;
+                        }
                     }
                 }
         }

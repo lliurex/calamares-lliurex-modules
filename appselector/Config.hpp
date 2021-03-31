@@ -10,13 +10,15 @@ class App: public QObject
 {
     Q_OBJECT
     
-    Q_PROPERTY( QString name MEMBER m_name READ name)
-    Q_PROPERTY( QString icoName MEMBER m_iconName READ iconName)
+    Q_PROPERTY( QString name MEMBER m_name READ name CONSTANT)
+    Q_PROPERTY( QString iconName MEMBER m_iconName READ iconName CONSTANT)
+    Q_PROPERTY (bool checked MEMBER m_checked NOTIFY checkedChanged)
     
     public:
     
     QString m_name;
     QString m_iconName;
+    bool m_checked;
     
     QString name () const
     {
@@ -28,9 +30,13 @@ class App: public QObject
         return m_iconName;
     }
     
-    App(QString name,QString iconName) : m_name(name),m_iconName(iconName)
+    App(QString name,QString iconName) : m_name(name),m_iconName(iconName), m_checked(false)
     {
     }
+    
+    Q_SIGNALS:
+        
+    void checkedChanged();
 };
 
 class Config : public QObject
@@ -39,6 +45,7 @@ class Config : public QObject
     
     Q_PROPERTY( int step MEMBER m_step NOTIFY stepChanged)
     Q_PROPERTY(QList<QObject *> appsModel MEMBER m_appsModel CONSTANT)
+    Q_PROPERTY(QList<QObject *> servicesModel MEMBER m_servicesModel CONSTANT)
     
     public:
     
@@ -50,6 +57,7 @@ class Config : public QObject
     
     int m_step;
     QList<QObject *> m_appsModel;
+    QList<QObject *> m_servicesModel;
         
     Q_SIGNALS:
     
