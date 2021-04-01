@@ -38,7 +38,7 @@ QQC2.Pane
         id: page1
         
         ColumnLayout {
-            spacing: Kirigami.Units.smallSpacing
+            spacing: Kirigami.Units.largeSpacing
             //anchors.fill: parent
             QQC2.Label {
                 Layout.fillWidth: true
@@ -49,25 +49,37 @@ QQC2.Pane
                 id: layoutsView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                
-                property var ratio: 0.15
+                spacing: Kirigami.Units.largeSpacing*2
                 
                 model: config.appsModel
                 
                 focus: true
             
                 delegate:
-                    QQC2.CheckBox {
+                    ColumnLayout {
                         
-                        text: modelData.name
-                        icon.name: modelData.iconName
-                        icon.width: 32
-                        icon.height: 32
                         
-                        checked: modelData.checked
+                        RowLayout {
+                            spacing: Kirigami.Units.smallSpacing
+                            
+                            QQC2.CheckBox {
+                                icon.name: modelData.iconName
+                                icon.width: 32
+                                icon.height: 32
+                                
+                                checked: modelData.checked
+                                
+                                onToggled: {
+                                    modelData.checked=checked;
+                                }
+                            }
+                            QQC2.Label {
+                                text: "<b>"+modelData.displayName+"</b>"
+                            }
+                        }
                         
-                        onToggled: {
-                            modelData.checked=checked;
+                        QQC2.Label {
+                            text: modelData.description
                         }
                     }
                 }
@@ -78,7 +90,7 @@ QQC2.Pane
         id: page2
         
         ColumnLayout {
-            spacing: Kirigami.Units.smallSpacing
+            spacing: Kirigami.Units.largeSpacing
             //anchors.fill: parent
             QQC2.Label {
                 Layout.fillWidth: true
@@ -89,24 +101,36 @@ QQC2.Pane
                 id: layoutsView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                
-                property var ratio: 0.15
+                spacing: Kirigami.Units.largeSpacing*2
                 
                 model: config.servicesModel
                 
                 focus: true
             
                 delegate:
-                    QQC2.CheckBox {
-                        text: modelData.name
-                        icon.name: modelData.iconName
-                        icon.width: 32
-                        icon.height: 32
+                    ColumnLayout {
                         
-                        checked: modelData.checked
+                        RowLayout {
+                            spacing: Kirigami.Units.smallSpacing
+                            
+                            QQC2.CheckBox {
+                                icon.name: modelData.iconName
+                                icon.width: 32
+                                icon.height: 32
+                                
+                                checked: modelData.checked
+                                
+                                onToggled: {
+                                    modelData.checked=checked;
+                                }
+                            }
+                            QQC2.Label {
+                                text: "<b>"+modelData.displayName+"</b>"
+                            }
+                        }
                         
-                        onToggled: {
-                            modelData.checked=checked;
+                        QQC2.Label {
+                            text: modelData.description
                         }
                     }
                 }

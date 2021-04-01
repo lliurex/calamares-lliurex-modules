@@ -11,7 +11,10 @@ class App: public QObject
     Q_OBJECT
     
     Q_PROPERTY( QString name MEMBER m_name READ name CONSTANT)
+    Q_PROPERTY( QString displayName MEMBER m_iconName READ displayName CONSTANT)
     Q_PROPERTY( QString iconName MEMBER m_iconName READ iconName CONSTANT)
+    Q_PROPERTY( QString description MEMBER m_iconName READ description CONSTANT)
+    
     Q_PROPERTY (bool checked MEMBER m_checked NOTIFY checkedChanged)
     
     public:
@@ -27,18 +30,34 @@ class App: public QObject
         return m_name;
     }
     
+    QString displayName () const
+    {
+        return m_displayName;
+    }
+    
     QString iconName () const
     {
         return m_iconName;
     }
     
-    App(QString name,QString iconName) : m_name(name),m_iconName(iconName), m_checked(false)
+    QString description () const
+    {
+        return m_description;
+    }
+    
+    App(QString name, QString displayName, QString iconName, QString description, bool checked) :
+        m_name(name),
+        m_displayName(displayName),
+        m_iconName(iconName),
+        m_description(description),
+        m_checked(checked)
     {
     }
     
     Q_SIGNALS:
         
     void checkedChanged();
+
 };
 
 class Config : public QObject
