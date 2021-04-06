@@ -38,7 +38,7 @@ QQC2.Pane
         id: page1
         
         ColumnLayout {
-            spacing: Kirigami.Units.largeSpacing
+            spacing: Kirigami.Units.largeSpacing*4
             //anchors.fill: parent
             QQC2.Label {
                 Layout.fillWidth: true
@@ -54,10 +54,11 @@ QQC2.Pane
                 model: config.appsModel
                 
                 focus: true
+                
+                QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
             
                 delegate:
                     ColumnLayout {
-                        
                         
                         RowLayout {
                             spacing: Kirigami.Units.smallSpacing
@@ -90,7 +91,7 @@ QQC2.Pane
         id: page2
         
         ColumnLayout {
-            spacing: Kirigami.Units.largeSpacing
+            spacing: Kirigami.Units.largeSpacing*4
             //anchors.fill: parent
             QQC2.Label {
                 Layout.fillWidth: true
@@ -106,6 +107,8 @@ QQC2.Pane
                 model: config.servicesModel
                 
                 focus: true
+                
+                QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
             
                 delegate:
                     ColumnLayout {
