@@ -1,5 +1,5 @@
 ---
 type:       "job"
-name:       "desktop-layout-actions"
+name:       "layoutselector-actions"
 interface:  "python"
 script:     "main.py"
