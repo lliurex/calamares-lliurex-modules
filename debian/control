@@ -1,0 +1,13 @@
+Source: calamares-lliurex-modules
+Section: utils
+Priority: optional
+Maintainer: Enrique Medina Gremaldos <quiqueiii@gmail.com>
+Build-Depends: debhelper (>=9), cmake, qtbase5-dev, qtdeclarative5-dev, extra-cmake-modules, calamares-dev, plasma-framework
+Standards-Version: 3.9.7
+Homepage: https://github.com/lliurex/calamares-lliurex-modules
+
+Package: calamares-lliurex-modules
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: custom lliurex calamares modules
+ Custom lliurex calamares modules
