@@ -5,45 +5,149 @@
 #
 #   GPLv3
 
-    def install_package(self, list_packages, package):
-        found = False
-        for list_index in range(0,len(list_packages)):
-            install_keys = [ x for x in ['install','try_install'] if x in list_packages[list_index] ]
-            for x in install_keys:
-                if package in list_packages[list_index][x]:
-                    found = True
-        if not found:
-            if 'try_install' not in list_packages[0]:
-                list_packages[0] = {'try_install':()}
-            list_packages[0]['try_install'] = list_packages[0]['try_install'] + (package,)
-        return list_packages
+import libcalamares
+import subprocess
+import abc
+from pathlib import Path
 
-    def system_addons(rmp,config):
+from libcalamares.utils import check_target_env_call, target_env_call
+
+class PackageManager(metaclass=abc.ABCMeta):
+    """
+    Package manager base class. A subclass implements package management
+    for a specific backend, and must have a class property `backend`
+    with the string identifier for that backend.
+    Subclasses are collected below to populate the list of possible
+    backends.
+    """
+    backend = None
+
+    @abc.abstractmethod
+    def install(self, pkgs, from_local=False):
+        """
+        Install a list of packages (named) into the system.
+        Although this handles lists, in practice it is called
+        with one package at a time.
+        @param pkgs: list[str]
+            list of package names
+        @param from_local: bool
+            if True, then these are local packages (on disk) and the
+            pkgs names are paths.
+        """
+        pass
+
+    @abc.abstractmethod
+    def remove(self, pkgs):
+        """
+        Removes packages.
+        @param pkgs: list[str]
+            list of package names
+        """
+        pass
+
+    @abc.abstractmethod
+    def update_db(self):
+        pass
+
+    def run(self, script):
+        if script != "":
+            check_target_env_call(script.split(" "))
+
+    def install_package(self, packagedata, from_local=False):
+        """
+        Install a package from a single entry in the install list.
+        This can be either a single package name, or an object
+        with pre- and post-scripts. If @p packagedata is a dict,
+        it is assumed to follow the documented structure.
+        @param packagedata: str|dict
+        @param from_local: bool
+            see install.from_local
+        """
+        if isinstance(packagedata, str):
+            self.install([packagedata], from_local=from_local)
+        else:
+            self.run(packagedata["pre-script"])
+            self.install([packagedata["package"]], from_local=from_local)
+            self.run(packagedata["post-script"])
+
+    def remove_package(self, packagedata):
+        """
+        Remove a package from a single entry in the remove list.
+        This can be either a single package name, or an object
+        with pre- and post-scripts. If @p packagedata is a dict,
+        it is assumed to follow the documented structure.
+        @param packagedata: str|dict
+        """
+        if isinstance(packagedata, str):
+            self.remove([packagedata])
+        else:
+            self.run(packagedata["pre-script"])
+            self.remove([packagedata["package"]])
+            self.run(packagedata["post-script"])
+
+
+class PMApt(PackageManager):
+    backend = "apt"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["apt-get", "-q", "-y", "install"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["apt-get", "--purge", "-q", "-y",
+                               "remove"] + pkgs)
+        check_target_env_call(["apt-get", "--purge", "-q", "-y",
+                               "autoremove"])
+
+    def update_db(self):
+        check_target_env_call(["apt-get", "update"])
+
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
+
+
+#  ------------------------------------------------------------------------------------------------------------------
+
+def get_list_packages():
+    pass
+
+def get_system_config():
+    pass
+
+def system_addons( rmp, config, pkgman ):
     '''
         Create link to resolv.conf
     '''
-    if config['flash']:
-        # install Flash by epic
-        libcalamares.utils.target_env_call(['epic','-u','install','/usr/share/zero-lliurex-flash/flash.epi'])
-
-    analytics_path = "{rootmountpoint}/etc/lliurex-analytics/".format(rootmountpoint=rmp)
-    os.system("mkdir -p {ap}".format(ap=analytics_path))
-    if config['statistics']:
-        # Enable Statistics
-        with open(os.path.join(analytics_path,"status"),"w") as fd:
+    
+    analytics_path = Path("{rootmountpoint}/etc/lliurex-analytics/status".format(rootmountpoint=rmp)
+    analytics_path.parent.mkdir(exist_ok=True, parents= True)
+    with analytics_path.open("w",encoding='utf-8') as fd:
+        if config['statistics']:
+            # Enable Statistics
             fd.write('yes\n')
-    else:
-        with open(os.path.join(analytics_path,"status"),"w") as fd:
+        else:
             fd.write('no\n')
 
+    if config['inventory']:
+        pkgman.install('fusioninstall')
 
     return None
 
 def run():
-    """
-    Create ubiquity modifications
-    :return:
-    """
-    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
-    config = libcalamares.globalstorage.value('systemaddons')
-    return system_addons(root_mount_point,config)
+    if libcalamares.globalstorage.value("hasInternet"):
+        pkgman = PMApt()
+        packages = get_list_packages()
+        pkgman.update_db()
+        for package in packages :
+            try:
+                pkgman.install(package)
+            except subprocess.CalledProcessError:
+                libcalamares.utils.warning("Cound not install package {package}".format(package=package))
+    else:
+        libcalamares.utils.warning("Package installation has been skipped: no internet")
+
+    system_addons( libcalamares.globalstorage.value("rootMountPoint"), get_system_config(), pkgman) 
+    return None
+
+
