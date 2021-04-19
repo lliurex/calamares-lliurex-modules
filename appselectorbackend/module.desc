@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "appselectorbackend"
+interface:  "python"
+script:     "main.py"   #assumed relative to the current directory
