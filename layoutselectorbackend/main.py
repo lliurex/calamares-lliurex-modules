@@ -22,5 +22,5 @@ def run():
     """
         
     """
-    config = libcalamares.globalstorage.value('desktoplayout')
+    config = libcalamares.globalstorage.value('lliurexDesktopLayout')
     return system_addons(config)

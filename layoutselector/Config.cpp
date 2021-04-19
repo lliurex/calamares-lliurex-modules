@@ -13,7 +13,7 @@ Config::Config(QObject* parent) : QObject(parent)
 void Config::store()
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    gs->insert( "desktoplayout", m_layout );
+    gs->insert( "lliurexDesktopLayout", m_layout );
     qDebug()<<"storing layout "<<m_layout;
 }
 
