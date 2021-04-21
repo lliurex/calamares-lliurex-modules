@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "layoutselector-actions"
+interface:  "python"
+script:     "main.py"

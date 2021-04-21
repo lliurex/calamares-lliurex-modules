@@ -30,8 +30,25 @@ void Config::store()
         i++;
     }
     
-    gs->insert( "LliurexExtraApps", apps );
-    //qDebug()<<"storing layout "<<m_layout;
+    gs->insert( "lliurexExtraApps", apps );
+    
+    QList<QVariant> services;
+    
+    QList<QObject* >::const_iterator j = m_servicesModel.begin();
+    
+    while(j!=m_servicesModel.end()) {
+        
+        App* app = static_cast<App*>(*j);
+        
+        if (app->m_checked) {
+            services.append(app->m_name);
+        }
+        
+        j++;
+    }
+    
+    gs->insert("lliurexExtraServices", services );
+
 }
 
 void Config::setConfigurationMap(const QVariantMap& configurationMap)
