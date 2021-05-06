@@ -1,5 +1,5 @@
 ---
 type:       "job"
-name:       "layoutselector-actions"
+name:       "layoutselectorbackend"
 interface:  "python"
 script:     "main.py"
