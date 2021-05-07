@@ -1,5 +1,5 @@
 ---
 type:       "job"
-name:       "layoutselectorbackend"
+name:       "lliurexactions"
 interface:  "python"
 script:     "main.py"
