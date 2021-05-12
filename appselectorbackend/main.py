@@ -111,11 +111,11 @@ class PMApt(PackageManager):
 
 def get_list_packages():
 
-    return libcalamares.globalstorage.value("lliurexExtraApps"):
+    return libcalamares.globalstorage.value("lliurexExtraApps")
 
 def get_system_config():
     
-    return libcalamares.globalstorage.value("lliurexExtraServices"):
+    return libcalamares.globalstorage.value("lliurexExtraServices")
 
 def system_addons( rmp, config, pkgman ):
     '''
