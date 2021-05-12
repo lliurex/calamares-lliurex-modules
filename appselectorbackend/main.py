@@ -110,27 +110,29 @@ class PMApt(PackageManager):
 #  ------------------------------------------------------------------------------------------------------------------
 
 def get_list_packages():
-    pass
+
+    return libcalamares.globalstorage.value("lliurexExtraApps"):
 
 def get_system_config():
-    pass
+    
+    return libcalamares.globalstorage.value("lliurexExtraServices"):
 
 def system_addons( rmp, config, pkgman ):
     '''
         Create link to resolv.conf
     '''
     
-    analytics_path = Path("{rootmountpoint}/etc/lliurex-analytics/status".format(rootmountpoint=rmp)
+    analytics_path = Path("{rootmountpoint}/etc/lliurex-analytics/status".format(rootmountpoint=rmp))
     analytics_path.parent.mkdir(exist_ok=True, parents= True)
     with analytics_path.open("w",encoding='utf-8') as fd:
-        if config['statistics']:
+        if 'statistics' in config:
             # Enable Statistics
             fd.write('yes\n')
         else:
             fd.write('no\n')
 
-    if config['inventory']:
-        pkgman.install('fusioninstall')
+    if 'inventory' in config:
+        pkgman.install(['fusioninstall'])
 
     return None
 
@@ -141,7 +143,7 @@ def run():
         pkgman.update_db()
         for package in packages :
             try:
-                pkgman.install(package)
+                pkgman.install([package])
             except subprocess.CalledProcessError:
                 libcalamares.utils.warning("Cound not install package {package}".format(package=package))
     else:
