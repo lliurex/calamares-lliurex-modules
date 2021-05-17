@@ -131,14 +131,14 @@ def system_addons( rmp, config, pkgman ):
         else:
             fd.write('no\n')
 
-    if 'inventory' in config:
+    if 'inventory' in config and libcalamares.globalstorage.value("hasInternet"):
         pkgman.install(['fusioninstall'])
 
     return None
 
 def run():
+    pkgman = PMApt()
     if libcalamares.globalstorage.value("hasInternet"):
-        pkgman = PMApt()
         packages = get_list_packages()
         pkgman.update_db()
         for package in packages :
