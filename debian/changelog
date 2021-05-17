@@ -1,3 +1,9 @@
+calamares-lliurex-modules (1.0.2.3) focal; urgency=medium
+
+  * Fail if there isn't internet
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 17 May 2021 16:09:51 +0200
+
 calamares-lliurex-modules (1.0.2.2) focal; urgency=medium
 
   * fix typo
