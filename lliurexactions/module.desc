@@ -2,4 +2,4 @@
 type:       "job"
 name:       "lliurexactions"
 interface:  "python"
-script:     "main.py"
+script:     "main.py"   #assumed relative to the current directory
