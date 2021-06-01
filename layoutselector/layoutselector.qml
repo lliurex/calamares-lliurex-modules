@@ -12,7 +12,7 @@ QQC2.Pane
     ListModel {
         id: layoutsModel
         ListElement {
-            dispalyName: i18nd("calamares-lliurex-modules","Classic")
+            displayName: i18nd("calamares-lliurex-modules","Classic")
             name: "classic"
             image: "qrc:/preview-classic.svg"
             }
