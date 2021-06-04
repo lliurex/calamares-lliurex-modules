@@ -12,13 +12,13 @@ QQC2.Pane
     ListModel {
         id: layoutsModel
         ListElement {
-            displayName: i18nd("calamares-lliurex-modules","Classic")
+            displayName: "Classic"
             name: "classic"
             image: "qrc:/preview-classic.svg"
             }
             
             ListElement {
-            displayName: i18nd("calamares-lliurex-modules","Default")
+            displayName: "Default"
             name: "default"
             image: "qrc:/preview-default.svg"
         }
@@ -29,7 +29,7 @@ QQC2.Pane
         anchors.fill: parent
         Text {
             Layout.fillWidth: true
-            text: i18nd("calamares-lliurex-modules","Select a default layout")
+            text: "Select a default layout"
         }
         
         ListView {
