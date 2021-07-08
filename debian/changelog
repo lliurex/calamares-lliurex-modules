@@ -1,3 +1,9 @@
+calamares-lliurex-modules (21.1.0.0) focal; urgency=medium
+
+  * Add methods to comment and uncomment mirror lines on sources.list file
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 08 Jul 2021 17:42:03 +0200
+
 calamares-lliurex-modules (21.0.0.0) focal; urgency=medium
 
   * Removed locale support (will be fixed soon)
