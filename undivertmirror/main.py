@@ -15,7 +15,7 @@ from libcalamares.utils import check_target_env_call, target_env_call
 def run():
 
     root = Path( libcalamares.globalstorage.value("rootMountPoint") )
-    sources_list = root.joinpath('etc','sources.list')
+    sources_list = root.joinpath('etc','apt','sources.list')
     all_content=[]
     with sources_list.open("r",encoding="utf-8") as fd:
         for line in fd.readlines():
