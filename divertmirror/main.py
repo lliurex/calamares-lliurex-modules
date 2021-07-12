@@ -14,8 +14,6 @@ from libcalamares.utils import check_target_env_call, target_env_call
 
 def run():
 
-    if libcalamares.globalstorage.value("hasInternet"):
-        packages = get_list_packages()
     root = Path( libcalamares.globalstorage.value("rootMountPoint") )
     sources_list = root.joinpath('etc','sources.list')
     all_content=[]
