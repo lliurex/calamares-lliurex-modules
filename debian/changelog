@@ -1,3 +1,9 @@
+calamares-lliurex-modules (21.1.2.0) focal; urgency=medium
+
+  * Add new line character to end line on mirror lines
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 13 Jul 2021 15:34:13 +0200
+
 calamares-lliurex-modules (21.1.1.0) focal; urgency=medium
 
   * Fix apt path on module
