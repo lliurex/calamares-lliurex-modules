@@ -22,7 +22,7 @@ def run():
             try:
                 line.index("http://mirror")
                 if line.strip().startswith("#"):
-                    all_content.append(line.strip()[1:])
+                    all_content.append(line.strip()[1:]+"\n")
             except Exception as e:
                 all_content.append(line)
     
