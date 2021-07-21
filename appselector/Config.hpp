@@ -5,6 +5,8 @@
 #include <QString>
 #include <QObject>
 #include <QList>
+#include <QMap>
+#include <QDebug>
 
 class App: public QObject
 {
@@ -14,7 +16,7 @@ class App: public QObject
     Q_PROPERTY( QString displayName MEMBER m_iconName READ displayName CONSTANT)
     Q_PROPERTY( QString iconName MEMBER m_iconName READ iconName CONSTANT)
     Q_PROPERTY( QString description MEMBER m_iconName READ description CONSTANT)
-    
+    Q_PROPERTY (QString translation READ translation CONSTANT)
     Q_PROPERTY (bool checked MEMBER m_checked NOTIFY checkedChanged)
     
     public:
@@ -24,6 +26,7 @@ class App: public QObject
     QString m_description;
     QString m_iconName;
     bool m_checked;
+    QMap<QString,QString> m_translation;
     
     QString name () const
     {
@@ -45,18 +48,41 @@ class App: public QObject
         return m_description;
     }
     
-    App(QString name, QString displayName, QString iconName, QString description, bool checked) :
+    QString translation () const
+    {
+        QString ret = m_translation[m_lang];
+        qDebug()<<"ret:"<<ret;
+        
+        if (ret.size()==0) {
+            return m_description;
+        }
+        
+        return ret;
+    }
+    
+    void setLang (QString lang)
+    {
+        qDebug()<<"setting lang as "<<lang;
+        m_lang=lang;
+    }
+    
+    App(QString name, QString displayName, QString iconName, QString description, bool checked, QMap<QString,QString> translation) :
         m_name(name),
         m_displayName(displayName),
         m_iconName(iconName),
         m_description(description),
-        m_checked(checked)
+        m_checked(checked),
+        m_translation(translation)
     {
     }
     
     Q_SIGNALS:
         
     void checkedChanged();
+    
+    private:
+    
+    QString m_lang;
 
 };
 
@@ -76,6 +102,8 @@ class Config : public QObject
     
     void store();
     
+    void setLang(QString lang);
+    
     int m_step;
     QList<QObject *> m_appsModel;
     QList<QObject *> m_servicesModel;
@@ -83,6 +111,10 @@ class Config : public QObject
     Q_SIGNALS:
     
     void stepChanged();
+    
+    private:
+    
+    QString m_lang;
     
 };
 

@@ -80,7 +80,7 @@ QQC2.Pane
                         }
                         
                         QQC2.Label {
-                            text: modelData.description
+                            text: modelData.translation
                         }
                     }
                 }

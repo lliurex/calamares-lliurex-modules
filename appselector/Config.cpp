@@ -51,8 +51,23 @@ void Config::store()
 
 }
 
+void Config::setLang(QString lang)
+{
+    QList<QObject* >::const_iterator i = m_appsModel.begin();
+    
+    while(i!=m_appsModel.end()) {
+        
+        App* app = static_cast<App*>(*i);
+        
+        app->setLang(lang);
+        i++;
+    }
+}
+
 void Config::setConfigurationMap(const QVariantMap& configurationMap)
 {
+    
+    qDebug()<<"*** I'm being reconfigured ***";
     QMap<QString, QVariant>::const_iterator i = configurationMap.find("apps");
     
     if (i!=configurationMap.end()) {
@@ -69,17 +84,44 @@ void Config::setConfigurationMap(const QVariantMap& configurationMap)
             QMap<QString, QVariant>::const_iterator icon = app.find("icon");
             QMap<QString, QVariant>::const_iterator description = app.find("description");
             QMap<QString, QVariant>::const_iterator checked = app.find("checked");
+            QMap<QString, QVariant>::const_iterator translation = app.find("translation");
             
             if (name!=app.end() and display!=app.end() and icon!=app.end()) {
                 QString desc = (description!=app.end()) ? description.value().toString() : QString();
                 bool chk = (checked!=app.end()) ? checked.value().toBool() : false;
+                
+                QMap<QString,QString> translationStrings;
+                
+                if (translation!=app.end()) {
+                    qDebug()<<"** Translation available";
+                     //translations available 
+                    
+                    QVariantList ts = translation.value().toList();
+                    QList<QVariant>::const_iterator q = ts.begin();
+                    
+                    while (q!=ts.end()) {
+                        QMap<QString,QVariant> r = (*q).toMap();
+                        QMap<QString, QVariant>::const_iterator name = r.find("name");
+                        QMap<QString, QVariant>::const_iterator value = r.find("value");
+                        
+                        if (name!=r.end() and value!=r.end()) {
+                           qDebug()<<name.value().toString()<<":"<<value.value().toString();
+                            translationStrings[name.value().toString()]=value.value().toString();
+                        }
+                        
+                        q++;
+                    }
+                    
+                }
                 
                 m_appsModel.append(new App(
                     name.value().toString(),
                     display.value().toString(),
                     icon.value().toString(),
                     desc,
-                    chk));
+                    chk,
+                    translationStrings
+                    ));
             }
             
             j++;
@@ -107,12 +149,16 @@ void Config::setConfigurationMap(const QVariantMap& configurationMap)
                 QString desc = (description!=app.end()) ? description.value().toString() : QString();
                 bool chk = (checked!=app.end()) ? checked.value().toBool() : false;
                 
+                QMap<QString,QString> translationStrings;
+                
                 m_servicesModel.append(new App(
                     name.value().toString(),
                     display.value().toString(),
                     icon.value().toString(),
                     desc,
-                    chk));
+                    chk,
+                    translationStrings
+                    ));
             }
             
             j++;
