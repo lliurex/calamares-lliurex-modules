@@ -32,6 +32,7 @@ QQC2.Pane
                 stack.replace(page2,QQC2.StackView.PushTransition);
             }
         }
+        
     }
     
     Component {
@@ -41,8 +42,17 @@ QQC2.Pane
             spacing: Kirigami.Units.largeSpacing*4
             //anchors.fill: parent
             QQC2.Label {
+                id: label
                 Layout.fillWidth: true
-                text: "Select apps"
+                text: config.translate("Select apps")
+            }
+            
+            Connections {
+                target: config
+                
+                function onAppsModelChanged() {
+                    label.text=config.translate("Select apps");
+                }
             }
             
             ListView {
@@ -80,7 +90,7 @@ QQC2.Pane
                         }
                         
                         QQC2.Label {
-                            text: modelData.description
+                            text: modelData.translation
                         }
                     }
                 }
@@ -94,8 +104,17 @@ QQC2.Pane
             spacing: Kirigami.Units.largeSpacing*4
             //anchors.fill: parent
             QQC2.Label {
+                id: label
                 Layout.fillWidth: true
-                text: "Select services"
+                text: config.translate("Select services")
+            }
+            
+            Connections {
+                target: config
+                
+                function onAppsModelChanged() {
+                    label.text=config.translate("Select services");
+                }
             }
             
             ListView {
@@ -133,7 +152,7 @@ QQC2.Pane
                         }
                         
                         QQC2.Label {
-                            text: modelData.description
+                            text: modelData.translation
                         }
                     }
                 }
