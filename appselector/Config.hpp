@@ -16,7 +16,7 @@ class App: public QObject
     Q_PROPERTY( QString displayName MEMBER m_iconName READ displayName CONSTANT)
     Q_PROPERTY( QString iconName MEMBER m_iconName READ iconName CONSTANT)
     Q_PROPERTY( QString description MEMBER m_iconName READ description CONSTANT)
-    Q_PROPERTY (QString translation READ translation CONSTANT)
+    Q_PROPERTY (QString translation READ translation NOTIFY translationChanged)
     Q_PROPERTY (bool checked MEMBER m_checked NOTIFY checkedChanged)
     
     public:
@@ -26,7 +26,6 @@ class App: public QObject
     QString m_description;
     QString m_iconName;
     bool m_checked;
-    QMap<QString,QString> m_translation;
     
     QString name () const
     {
@@ -50,8 +49,7 @@ class App: public QObject
     
     QString translation () const
     {
-        QString ret = m_translation[m_lang];
-        qDebug()<<"ret:"<<ret;
+        QString ret = m_translation;
         
         if (ret.size()==0) {
             return m_description;
@@ -60,29 +58,30 @@ class App: public QObject
         return ret;
     }
     
-    void setLang (QString lang)
+    void translate(QString value)
     {
-        qDebug()<<"setting lang as "<<lang;
-        m_lang=lang;
+        m_translation=value;
+        emit translationChanged();
     }
     
-    App(QString name, QString displayName, QString iconName, QString description, bool checked, QMap<QString,QString> translation) :
+    App(QString name, QString displayName, QString iconName, QString description, bool checked) :
         m_name(name),
         m_displayName(displayName),
         m_iconName(iconName),
         m_description(description),
-        m_checked(checked),
-        m_translation(translation)
+        m_checked(checked)
     {
     }
     
     Q_SIGNALS:
         
     void checkedChanged();
+    void translationChanged();
     
     private:
     
     QString m_lang;
+    QString m_translation;
 
 };
 
@@ -91,7 +90,7 @@ class Config : public QObject
     Q_OBJECT
     
     Q_PROPERTY( int step MEMBER m_step NOTIFY stepChanged)
-    Q_PROPERTY(QList<QObject *> appsModel MEMBER m_appsModel CONSTANT)
+    Q_PROPERTY(QList<QObject *> appsModel MEMBER m_appsModel NOTIFY appsModelChanged)
     Q_PROPERTY(QList<QObject *> servicesModel MEMBER m_servicesModel CONSTANT)
     
     public:
@@ -104,6 +103,8 @@ class Config : public QObject
     
     void setLang(QString lang);
     
+    Q_INVOKABLE QString translate(QString id);
+    
     int m_step;
     QList<QObject *> m_appsModel;
     QList<QObject *> m_servicesModel;
@@ -111,10 +112,13 @@ class Config : public QObject
     Q_SIGNALS:
     
     void stepChanged();
+    void appsModelChanged();
     
     private:
     
     QString m_lang;
+    
+    QMap<QString, QMap<QString, QString> > m_translations;
     
 };
 

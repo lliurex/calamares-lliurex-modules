@@ -12,7 +12,14 @@ AppViewStep::AppViewStep(QObject* parent) : Calamares::QmlViewStep( parent )
 {
     m_config = new Config(this);
     
-    CALAMARES_RETRANSLATE_SLOT( &AppViewStep::onRetranslate );
+    //CALAMARES_RETRANSLATE_SLOT(&AppViewStep::onRetranslate);
+    /*
+    connect( CalamaresUtils::Retranslator::retranslatorFor( this ), 
+                       &CalamaresUtils::Retranslator::languageChange, 
+                       [=]() {qDebug()<<"EAT THIS";});
+                       
+    */
+
 }
 
 AppViewStep:: ~AppViewStep()
@@ -59,7 +66,7 @@ bool AppViewStep::isAtEnd() const
 
 void AppViewStep::onActivate()
 {
-    
+    onRetranslate();
 }
 
 void AppViewStep::onLeave()
@@ -93,13 +100,11 @@ QObject* AppViewStep::getConfig()
 
 void AppViewStep::onRetranslate()
 {
-    qDebug()<<"retranslate invoked";
     
     QVariant tmp = Calamares::JobQueue::instance()->globalStorage()->value("localeConf");
     const QMap<QString, QVariant> conf = tmp.toMap();
     
     QString lang = conf["LANG"].toString();
-    qDebug()<<"lang: "<<lang;
     
     m_config->setLang(lang);
 }
