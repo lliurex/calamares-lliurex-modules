@@ -1,6 +1,11 @@
 
 #include "LayoutViewStep.hpp"
 
+#include <GlobalStorage.h>
+#include <JobQueue.h>
+
+#include <QDebug>
+
 CALAMARES_PLUGIN_FACTORY_DEFINITION( LayoutViewStepFactory, registerPlugin< LayoutViewStep >(); )
 
 LayoutViewStep::LayoutViewStep(QObject* parent) : Calamares::QmlViewStep( parent )
@@ -15,7 +20,7 @@ LayoutViewStep:: ~LayoutViewStep()
 
 QString LayoutViewStep::prettyName() const
 {
-    return tr("Default layout");
+    return tr("Layout");
 }
 
 bool LayoutViewStep::isNextEnabled() const
@@ -38,6 +43,18 @@ bool LayoutViewStep::isAtEnd() const
     return true;
 }
 
+void LayoutViewStep::onActivate()
+{
+    qDebug()<<"LV::OA";
+    QVariant tmp = Calamares::JobQueue::instance()->globalStorage()->value("localeConf");
+    const QMap<QString, QVariant> conf = tmp.toMap();
+    
+    QString lang = conf["LANG"].toString();
+    
+    qDebug()<<"LV::OA::2";
+    m_config->setLang(lang);
+}
+
 void LayoutViewStep::onLeave()
 {
     m_config->store();
@@ -50,7 +67,10 @@ Calamares::JobList LayoutViewStep::jobs() const
 
 void LayoutViewStep::setConfigurationMap(const QVariantMap& configurationMap)
 {
+    qDebug()<<"LV::CM";
+    
     Calamares::QmlViewStep::setConfigurationMap( configurationMap );
+    m_config->setConfigurationMap(configurationMap);
 }
 
 Calamares::RequirementsList LayoutViewStep::checkRequirements()

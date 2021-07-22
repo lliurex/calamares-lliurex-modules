@@ -27,9 +27,19 @@ QQC2.Pane
     ColumnLayout {
         spacing: Kirigami.Units.smallSpacing
         anchors.fill: parent
+        
+        Connections {
+            target: config
+            
+            function onTranslationsChanged() {
+                label.text=config.translate("Select a default layout");
+            }
+        }
+        
         Text {
             Layout.fillWidth: true
-            text: "Select a default layout"
+            id: label
+            text: config.translate("Select a default layout")
         }
         
         ListView {

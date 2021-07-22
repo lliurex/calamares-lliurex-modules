@@ -189,5 +189,5 @@ void Config::setConfigurationMap(const QVariantMap& configurationMap)
         }
     }
     
-    qDebug()<<m_translations;
+    //qDebug()<<m_translations;
 }
