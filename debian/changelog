@@ -1,3 +1,9 @@
+calamares-lliurex-modules (21.2.2.0) focal; urgency=medium
+
+  * Compare correct value of globalstorage
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 23 Jul 2021 09:54:09 +0200
+
 calamares-lliurex-modules (21.2.1.0) focal; urgency=medium
 
   * Added translation to layout plugin
