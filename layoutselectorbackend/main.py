@@ -13,7 +13,7 @@ def system_addons(config):
         Set default desktop layout
     '''
     layout = 'default'
-    if config['layout'] == 'classic':
+    if config == 'classic':
         layout = 'classic'
     libcalamares.utils.target_env_call(['llx-desktop-layout','set',layout])
     return None

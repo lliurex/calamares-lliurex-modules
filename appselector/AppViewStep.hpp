@@ -33,6 +33,7 @@ class PLUGINDLLEXPORT AppViewStep : public Calamares::QmlViewStep
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
     
+    void onActivate() override;
     void onLeave() override;
 
     Calamares::JobList jobs() const override;
@@ -46,6 +47,10 @@ class PLUGINDLLEXPORT AppViewStep : public Calamares::QmlViewStep
     protected:
     
     Config* m_config;
+    
+    public slots:
+    
+    void onRetranslate();
     
 };
 
