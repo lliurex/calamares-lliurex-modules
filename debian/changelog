@@ -1,3 +1,15 @@
+calamares-lliurex-modules (21.2.1.0) focal; urgency=medium
+
+  * Added translation to layout plugin
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Fri, 23 Jul 2021 00:58:40 +0200
+
+calamares-lliurex-modules (21.2.0.0) focal; urgency=medium
+
+  * Added a custom translation mechanism with strings stored at conf
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Thu, 22 Jul 2021 23:46:54 +0200
+
 calamares-lliurex-modules (21.1.2.0) focal; urgency=medium
 
   * Add new line character to end line on mirror lines
