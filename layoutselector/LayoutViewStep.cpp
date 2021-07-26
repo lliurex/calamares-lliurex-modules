@@ -45,13 +45,12 @@ bool LayoutViewStep::isAtEnd() const
 
 void LayoutViewStep::onActivate()
 {
-    qDebug()<<"LV::OA";
+    
     QVariant tmp = Calamares::JobQueue::instance()->globalStorage()->value("localeConf");
     const QMap<QString, QVariant> conf = tmp.toMap();
     
     QString lang = conf["LANG"].toString();
     
-    qDebug()<<"LV::OA::2";
     m_config->setLang(lang);
 }
 
