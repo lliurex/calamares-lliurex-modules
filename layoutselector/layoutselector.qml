@@ -11,17 +11,19 @@ QQC2.Pane
     
     ListModel {
         id: layoutsModel
+        
         ListElement {
-            displayName: "Classic"
-            name: "classic"
-            image: "qrc:/preview-classic.svg"
-            }
-            
-            ListElement {
             displayName: "Default"
             name: "default"
             image: "qrc:/preview-default.svg"
         }
+        
+        ListElement {
+            displayName: "Classic"
+            name: "classic"
+            image: "qrc:/preview-classic.svg"
+        }
+        
     }
     
     ColumnLayout {
@@ -33,6 +35,11 @@ QQC2.Pane
             
             function onTranslationsChanged() {
                 label.text=config.translate("Select a default layout");
+                
+                layoutsModel.clear();
+                layoutsModel.append({"displayName":config.translate("Default"),"name":"default","image":"qrc:/preview-default.svg"});
+                layoutsModel.append({"displayName":config.translate("Classic"),"name":"classic","image":"qrc:/preview-classic.svg"});
+                layoutsView.forceLayout();
             }
         }
         

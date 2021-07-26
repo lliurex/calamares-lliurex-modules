@@ -5,6 +5,13 @@ calamares-lliurex-modules (21.3.0.0) focal; urgency=medium
 
  -- Raul Rodrigo Segura <raurodse@gmail.com>  Sun, 25 Jul 2021 22:54:47 +0200
 
+calamares-lliurex-modules (21.2.3.0) focal; urgency=medium
+
+  * Using default layout as default layout (no pun intended)
+  * Translated layout names
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Fri, 23 Jul 2021 10:54:15 +0200
+
 calamares-lliurex-modules (21.2.2.0) focal; urgency=medium
 
   * Compare correct value of globalstorage
