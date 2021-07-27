@@ -1,3 +1,9 @@
+calamares-lliurex-modules (21.3.1.0) focal; urgency=medium
+
+  * Fix bug with computers without cdrom 
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 27 Jul 2021 18:56:33 +0200
+
 calamares-lliurex-modules (21.3.0.1) focal; urgency=medium
 
   * Sync between github version.
