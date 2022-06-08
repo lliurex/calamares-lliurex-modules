@@ -1,5 +1,5 @@
 
-cmake_minimum_required( VERSION 3.3 FATAL_ERROR )
+cmake_minimum_required( VERSION 3.16 FATAL_ERROR )
 
 project( calamares-lliurex-modules
     VERSION 1.0
@@ -15,6 +15,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Quick QuickWidgets )
 find_package( KF5 QUIET COMPONENTS CoreAddons Crash DBusAddons )
+find_package( Calamares  REQUIRED calamaresui )
 
 # Recognize more macros to trigger automoc
 if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")

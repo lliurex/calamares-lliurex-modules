@@ -11,7 +11,6 @@ calamares_add_plugin( appselector
     RESOURCES
         appselector.qrc
     LINK_PRIVATE_LIBRARIES
-        calamaresui
         KF5::CoreAddons
     SHARED_LIB
 )
