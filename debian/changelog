@@ -1,3 +1,9 @@
+calamares-lliurex-modules (21.5.0.0) lliurex22; urgency=medium
+
+  * Add module to disable temporally meta protection 
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 09 Jun 2022 12:32:25 +0200
+
 calamares-lliurex-modules (21.4.0.2) lliurex22; urgency=medium
 
   * Dummy upgrade
