@@ -1,3 +1,9 @@
+calamares-lliurex-modules (21.5.0.2) lliurex22; urgency=medium
+
+  * Recompile with new calamares
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 13 Jun 2022 13:55:13 +0200
+
 calamares-lliurex-modules (21.5.0.1) lliurex22; urgency=medium
 
   * Install module
