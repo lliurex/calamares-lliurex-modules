@@ -121,7 +121,8 @@ def system_addons( rmp, config, pkgman ):
     '''
         Create link to resolv.conf
     '''
-    
+
+    '''
     analytics_path = Path("{rootmountpoint}/etc/lliurex-analytics/status".format(rootmountpoint=rmp))
     analytics_path.parent.mkdir(exist_ok=True, parents= True)
     with analytics_path.open("w",encoding='utf-8') as fd:
@@ -133,7 +134,12 @@ def system_addons( rmp, config, pkgman ):
 
     if 'inventory' in config and libcalamares.globalstorage.value("hasInternet"):
         pkgman.install(['fusioninstall'])
-
+    '''
+    for package in config:
+        try:
+            pkgman.install([package])
+        except:
+            libcalamares.utils.warning("Cound not install package {package}".format(package=package))
     return None
 
 def run():
