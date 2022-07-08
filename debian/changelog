@@ -1,3 +1,9 @@
+calamares-lliurex-modules (21.7) lliurex22; urgency=medium
+
+  * calamares Upgraded
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 08 Jul 2022 09:43:19 +0200
+
 calamares-lliurex-modules (21.6) lliurex22; urgency=medium
 
   * Fix system install
