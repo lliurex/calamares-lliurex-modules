@@ -1,0 +1,182 @@
+calamares-lliurex-modules (23.1) jammy; urgency=medium
+
+  * First jammy version
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 18 Sep 2023 11:16:19 +0200
+
+calamares-lliurex-modules (21.7) lliurex22; urgency=medium
+
+  * calamares Upgraded
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 08 Jul 2022 09:43:19 +0200
+
+calamares-lliurex-modules (21.6) lliurex22; urgency=medium
+
+  * Fix system install
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Wed, 06 Jul 2022 09:55:47 +0200
+
+calamares-lliurex-modules (21.5.0.2) lliurex22; urgency=medium
+
+  * Recompile with new calamares
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 13 Jun 2022 13:55:13 +0200
+
+calamares-lliurex-modules (21.5.0.1) lliurex22; urgency=medium
+
+  * Install module
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 09 Jun 2022 16:11:11 +0200
+
+calamares-lliurex-modules (21.5.0.0) lliurex22; urgency=medium
+
+  * Add module to disable temporally meta protection 
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 09 Jun 2022 12:32:25 +0200
+
+calamares-lliurex-modules (21.4.0.2) lliurex22; urgency=medium
+
+  * Dummy upgrade
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Wed, 08 Jun 2022 12:13:16 +0200
+
+calamares-lliurex-modules (21.4.0.1) lliurex22; urgency=medium
+
+  * Dummy upgrade
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Wed, 08 Jun 2022 11:15:29 +0200
+
+calamares-lliurex-modules (21.4.0.0) lliurex22; urgency=medium
+
+  * Updated cmakes
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Wed, 08 Jun 2022 10:26:30 +0200
+
+calamares-lliurex-modules (21.3.1.1) lliurex22; urgency=medium
+
+  * Dummy upgrade
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 07 Jun 2022 16:03:46 +0200
+
+calamares-lliurex-modules (21.3.1.0) focal; urgency=medium
+
+  * Fix bug with computers without cdrom 
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 27 Jul 2021 18:56:33 +0200
+
+calamares-lliurex-modules (21.3.0.1) focal; urgency=medium
+
+  * Sync between github version.
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 26 Jul 2021 12:51:03 +0200
+
+calamares-lliurex-modules (21.3.0.0) focal; urgency=medium
+
+  * Fix /etc/default/locale if anybody had selected valencian on region
+    options
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Sun, 25 Jul 2021 22:54:47 +0200
+
+calamares-lliurex-modules (21.2.3.0) focal; urgency=medium
+
+  * Using default layout as default layout (no pun intended)
+  * Translated layout names
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Fri, 23 Jul 2021 10:54:15 +0200
+
+calamares-lliurex-modules (21.2.2.0) focal; urgency=medium
+
+  * Compare correct value of globalstorage
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 23 Jul 2021 09:54:09 +0200
+
+calamares-lliurex-modules (21.2.1.0) focal; urgency=medium
+
+  * Added translation to layout plugin
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Fri, 23 Jul 2021 00:58:40 +0200
+
+calamares-lliurex-modules (21.2.0.0) focal; urgency=medium
+
+  * Added a custom translation mechanism with strings stored at conf
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Thu, 22 Jul 2021 23:46:54 +0200
+
+calamares-lliurex-modules (21.1.2.0) focal; urgency=medium
+
+  * Add new line character to end line on mirror lines
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 13 Jul 2021 15:34:13 +0200
+
+calamares-lliurex-modules (21.1.1.0) focal; urgency=medium
+
+  * Fix apt path on module
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 12 Jul 2021 15:43:29 +0200
+
+calamares-lliurex-modules (21.1.0.0) focal; urgency=medium
+
+  * Add methods to comment and uncomment mirror lines on sources.list file
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 08 Jul 2021 17:42:03 +0200
+
+calamares-lliurex-modules (21.0.0.0) focal; urgency=medium
+
+  * Removed locale support (will be fixed soon)
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Fri, 04 Jun 2021 11:14:09 +0200
+
+calamares-lliurex-modules (1.0.4.0) focal; urgency=medium
+
+  * Fixed bug
+  * Updated layout preview color
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Tue, 01 Jun 2021 16:53:12 +0200
+
+calamares-lliurex-modules (1.0.3) focal; urgency=medium
+
+  * New module: lliurex actions
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 21 May 2021 13:32:26 +0200
+
+calamares-lliurex-modules (1.0.2.3) focal; urgency=medium
+
+  * Fail if there isn't internet
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 17 May 2021 16:09:51 +0200
+
+calamares-lliurex-modules (1.0.2.2) focal; urgency=medium
+
+  * fix typo
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 13 May 2021 13:42:02 +0200
+
+calamares-lliurex-modules (1.0.2.1) focal; urgency=medium
+
+  * get list apps and services to install
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Wed, 12 May 2021 17:33:36 +0200
+
+calamares-lliurex-modules (1.0.2) focal; urgency=medium
+
+  * Add lliurex fixes job
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Fri, 07 May 2021 18:00:21 +0200
+
+calamares-lliurex-modules (1.0.1.1) focal; urgency=medium
+
+  * dummy upgrade
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Wed, 21 Apr 2021 10:36:14 +0200
+
+calamares-lliurex-modules (1.0.1.0) focal; urgency=medium
+
+  * Added backends
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Wed, 21 Apr 2021 10:21:37 +0200
+
+calamares-lliurex-modules (1.0.0.0) focal; urgency=medium
+
+  * Initial release.
+
+ -- Enrique Medina Gremaldos <quiqueiii@gmail.com>  Mon, 19 Apr 2021 09:46:05 +0200
