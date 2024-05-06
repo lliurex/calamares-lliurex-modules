@@ -54,6 +54,7 @@ void Config::store()
 void Config::setLang(QString lang)
 {
     QList<QObject* >::const_iterator i = m_appsModel.begin();
+    QList<QObject* >::const_iterator j = m_servicesModel.begin();
     m_lang=lang;
     
     while(i!=m_appsModel.end()) {
@@ -66,7 +67,18 @@ void Config::setLang(QString lang)
         //qDebug()<<"translation:"<<m_translations[lang][id];
         i++;
     }
-    
+
+    while(j!=m_servicesModel.end()) {
+        
+        App* app = static_cast<App*>(*j);
+        
+        QString id = app->description();
+        
+        app->translate(m_translations[lang][id]);
+        //qDebug()<<"translation:"<<m_translations[lang][id];
+        j++;
+    }
+   
     emit appsModelChanged();
 }
 
