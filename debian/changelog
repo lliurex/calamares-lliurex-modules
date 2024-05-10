@@ -1,9 +1,3 @@
-calamares-lliurex-modules (23.3) jammy-testing; urgency=medium
-
-  * Testing 
-
- -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 09 May 2024 12:08:50 +0200
-
 calamares-lliurex-modules (23.2) jammy; urgency=medium
 
   * Add translations to services slide
