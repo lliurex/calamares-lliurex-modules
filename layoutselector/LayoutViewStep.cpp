@@ -20,7 +20,7 @@ LayoutViewStep:: ~LayoutViewStep()
 
 QString LayoutViewStep::prettyName() const
 {
-    return tr("Layout");
+    return tr("Keyboard") + "--";
 }
 
 bool LayoutViewStep::isNextEnabled() const
