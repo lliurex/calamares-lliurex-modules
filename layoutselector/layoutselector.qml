@@ -61,6 +61,7 @@ QQC2.Pane
             
             highlight:
                 Rectangle { 
+                    anchors.horizontalCenter: parent.horizontalCenter
                     color: "#bfdcf1"
                     border.color: "#3daee9"
                     border.width: 2
@@ -72,6 +73,7 @@ QQC2.Pane
             delegate:
                 Item {
                     id: itm
+                    anchors.horizontalCenter: parent.horizontalCenter
                     
                     width:(1920*layoutsView.ratio)+64
                     height:(1080*layoutsView.ratio)+32
@@ -88,16 +90,19 @@ QQC2.Pane
                         
                     Column {
                         id: chld
+                        anchors.horizontalCenter: itm.horizontalCenter
                         anchors.verticalCenter: itm.verticalCenter
                         spacing: Kirigami.Units.smallSpacing
                         
                         Image {
+                            anchors.horizontalCenter: parent.horizontalCenter
                             width: 1920*layoutsView.ratio
                             height: 1080*layoutsView.ratio
                             source: image
                         }
                         Text {
                             text: displayName
+                            anchors.horizontalCenter: parent.horizontalCenter
                         }
                     }
                 }
