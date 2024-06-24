@@ -1,10 +1,21 @@
 Source: calamares-lliurex-modules
 Section: utils
 Priority: optional
-Maintainer: Enrique Medina Gremaldos <quiqueiii@gmail.com>
-Build-Depends: debhelper (>=9), cmake, qtbase5-dev, qtdeclarative5-dev, extra-cmake-modules, calamares-dev, plasma-framework, libkf5coreaddons-dev, libkf5dbusaddons-dev
-Standards-Version: 3.9.7
-Homepage: https://github.com/lliurex/calamares-lliurex-modules
+Maintainer: LliureX Team <lliurex@gva.es>
+Rules-Requires-Root: no
+Build-Depends:  
+		debhelper-compat (=13),
+		cmake,
+		qt6-base-dev, 
+		qt6-declarative-dev,
+		extra-cmake-modules, 
+		calamares-dev, 
+		plasma-framework6, 
+		libkf6coreaddons-dev, 
+		libkf6dbusaddons-dev
+Standards-Version: 4.6.2
+Homepage: https://lliurex.net
+Vcs-Git: https://github.com/lliurex/calamares-lliurex-modules
 
 Package: calamares-lliurex-modules
 Architecture: any
