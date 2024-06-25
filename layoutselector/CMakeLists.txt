@@ -11,6 +11,6 @@ calamares_add_plugin( layoutselector
     RESOURCES
         layoutselector.qrc
     LINK_PRIVATE_LIBRARIES
-        KF5::CoreAddons
+        KF6::CoreAddons
     SHARED_LIB
 )
