@@ -1,3 +1,9 @@
+calamares-lliurex-modules (24.0.2) noble; urgency=medium
+
+  * Install packages without internet
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 07 Apr 2025 18:22:13 +0200
+
 calamares-lliurex-modules (24.0.1) noble; urgency=medium
 
   * Rebuild
