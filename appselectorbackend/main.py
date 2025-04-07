@@ -144,16 +144,13 @@ def system_addons( rmp, config, pkgman ):
 
 def run():
     pkgman = PMApt()
-    if libcalamares.globalstorage.value("hasInternet"):
-        packages = get_list_packages()
-        pkgman.update_db()
-        for package in packages :
-            try:
-                pkgman.install([package])
-            except subprocess.CalledProcessError:
-                libcalamares.utils.warning("Cound not install package {package}".format(package=package))
-    else:
-        libcalamares.utils.warning("Package installation has been skipped: no internet")
+    packages = get_list_packages()
+    pkgman.update_db()
+    for package in packages :
+        try:
+            pkgman.install([package])
+        except subprocess.CalledProcessError:
+            libcalamares.utils.warning("Cound not install package {package}".format(package=package))
 
     system_addons( libcalamares.globalstorage.value("rootMountPoint"), get_system_config(), pkgman) 
     return None
