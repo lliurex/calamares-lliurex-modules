@@ -32,29 +32,11 @@ void Config::store()
     
     gs->insert( "lliurexExtraApps", apps );
     
-    QList<QVariant> services;
-    
-    QList<QObject* >::const_iterator j = m_servicesModel.begin();
-    
-    while(j!=m_servicesModel.end()) {
-        
-        App* app = static_cast<App*>(*j);
-        
-        if (app->m_checked) {
-            services.append(app->m_name);
-        }
-        
-        j++;
-    }
-    
-    gs->insert("lliurexExtraServices", services );
-
 }
 
 void Config::setLang(QString lang)
 {
     QList<QObject* >::const_iterator i = m_appsModel.begin();
-    QList<QObject* >::const_iterator j = m_servicesModel.begin();
     m_lang=lang;
     
     while(i!=m_appsModel.end()) {
@@ -68,17 +50,6 @@ void Config::setLang(QString lang)
         i++;
     }
 
-    while(j!=m_servicesModel.end()) {
-        
-        App* app = static_cast<App*>(*j);
-        
-        QString id = app->description();
-        
-        app->translate(m_translations[lang][id]);
-        //qDebug()<<"translation:"<<m_translations[lang][id];
-        j++;
-    }
-   
     emit appsModelChanged();
 }
 
@@ -118,40 +89,6 @@ void Config::setConfigurationMap(const QVariantMap& configurationMap)
                 bool chk = (checked!=app.end()) ? checked.value().toBool() : false;
                 
                 m_appsModel.append(new App(
-                    name.value().toString(),
-                    display.value().toString(),
-                    icon.value().toString(),
-                    desc,
-                    chk
-                    ));
-            }
-            
-            j++;
-        }
-    }
-    
-    i = configurationMap.find("services");
-    
-    if (i!=configurationMap.end()) {
-        QVariantList services = i.value().toList();
-        
-        QList<QVariant>::const_iterator j = services.begin();
-        
-        while (j!=services.end()) {
-            
-            QMap<QString,QVariant> app = (*j).toMap();
-            
-            QMap<QString, QVariant>::const_iterator name = app.find("name");
-            QMap<QString, QVariant>::const_iterator display = app.find("display");
-            QMap<QString, QVariant>::const_iterator icon = app.find("icon");
-            QMap<QString, QVariant>::const_iterator description = app.find("description");
-            QMap<QString, QVariant>::const_iterator checked = app.find("checked");
-            
-            if (name!=app.end() and display!=app.end() and icon!=app.end()) {
-                QString desc = (description!=app.end()) ? description.value().toString() : QString();
-                bool chk = (checked!=app.end()) ? checked.value().toBool() : false;
-                
-                m_servicesModel.append(new App(
                     name.value().toString(),
                     display.value().toString(),
                     icon.value().toString(),

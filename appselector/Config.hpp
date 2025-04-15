@@ -91,7 +91,6 @@ class Config : public QObject
     
     Q_PROPERTY( int step MEMBER m_step NOTIFY stepChanged)
     Q_PROPERTY(QList<QObject *> appsModel MEMBER m_appsModel NOTIFY appsModelChanged)
-    Q_PROPERTY(QList<QObject *> servicesModel MEMBER m_servicesModel CONSTANT)
     
     public:
     
@@ -107,7 +106,6 @@ class Config : public QObject
     
     int m_step;
     QList<QObject *> m_appsModel;
-    QList<QObject *> m_servicesModel;
         
     Q_SIGNALS:
     
