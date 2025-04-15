@@ -1,3 +1,9 @@
+calamares-lliurex-modules (24.1) noble; urgency=medium
+
+  * Testing new module 
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 15 Apr 2025 12:26:13 +0200
+
 calamares-lliurex-modules (24.0.2) noble; urgency=medium
 
   * Install packages without internet
