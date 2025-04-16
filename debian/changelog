@@ -1,3 +1,9 @@
+calamares-lliurex-modules (24.3) noble; urgency=medium
+
+  * New modification
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Wed, 16 Apr 2025 10:20:15 +0200
+
 calamares-lliurex-modules (24.1) noble; urgency=medium
 
   * Testing new module 
