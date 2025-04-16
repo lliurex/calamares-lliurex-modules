@@ -18,13 +18,13 @@ QQC2.Pane
         QQC2.Label {
             id: label
             Layout.fillWidth: true
-            text: config.translate("Educational Level")
+            text: config.translate("EDUCATION LEVEL")
             font.bold:true
         }
         QQC2.Label {
             id: explanation
             Layout.fillWidth: true
-            text: config.translate("Explanation")
+            text: config.translate("Select your educational level, and LliureX 25 will be configured with the most suitable software for you.")
             wrapMode:Text.WordWrap
         }
 
@@ -32,7 +32,7 @@ QQC2.Pane
             target: config
             
             function onAppsModelChanged() {
-                label.text=config.translate("Educational Level");
+                label.text=config.translate("EDUCATION LEVEL");
             }
         }
         Item{
