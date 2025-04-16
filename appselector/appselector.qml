@@ -6,66 +6,48 @@ import org.kde.kirigami 2.5 as Kirigami
 
 QQC2.Pane
 {
+    id:paneContainer
     width: 400
     height: 400
-    
-    QQC2.StackView {
-        id: stack
-        
-        anchors.fill:parent
-        
-        //index: 0
-        initialItem: page1
-    }
-    
-    //Component.onCompleted: stack.push(page1)
-    
-    Connections {
-        target: config
-        
-        function onStepChanged() {
 
-            if (config.step==0) {
-                stack.replace(page1,QQC2.StackView.PopTransition);
-            }
-            if (config.step==1) {
-                stack.replace(page2,QQC2.StackView.PushTransition);
+    ColumnLayout {
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        spacing: Kirigami.Units.mediumSpacing
+        anchors.fill: parent
+        QQC2.Label {
+            id: label
+            Layout.fillWidth: true
+            text: config.translate("EDUCATION LEVEL")
+            font.bold:true
+        }
+        QQC2.Label {
+            id: explanation
+            Layout.fillWidth: true
+            text: config.translate("Select your educational level, and LliureX 25 will be configured with the most suitable software for you.")
+            wrapMode:Text.WordWrap
+        }
+
+        Connections {
+            target: config
+            
+            function onAppsModelChanged() {
+                label.text=config.translate("EDUCATION LEVEL");
             }
         }
-        
-    }
-    
-    Component {
-        id: page1
-        
-        ColumnLayout {
-            spacing: Kirigami.Units.mediumSpacing
-            //anchors.fill: parent
-            QQC2.Label {
-                id: label
-                Layout.fillWidth: true
-                text: config.translate("Educational Level")
-                font.bold:true
-            }
-            QQC2.Label {
-                id: explanation
-                Layout.fillWidth: true
-                text: config.translate("Explanation")
-                wrapMode:Text.WordWrap
-            }
-
-            Connections {
-                target: config
-                
-                function onAppsModelChanged() {
-                    label.text=config.translate("Educational Level");
-                }
-            }
+        Item{
+            id:gridContainer
+            width:parent.width
+            Layout.minimumHeight:parent.height/2
+            Layout.fillHeight:true
+            Layout.leftMargin:15
+            Layout.rightMargin:15
+            Layout.alignment:Qt.AlignHCenter
 
             GridView{
                 id:layoutsView
-                Layout.fillWidth:true
-                Layout.fillHeight:true
+                width:gridContainer.width
+                height:gridContainer.height
                 cellWidth:180
                 cellHeight:210
                 model: config.appsModel
@@ -95,7 +77,7 @@ QQC2.Pane
                         }
                         Rectangle{
                             id:rectContainer
-                            color:checked?"#87cefa":"#ebeced"
+                            color:checked?"#87cefa":"#c0c0c0"
                             radius:10
                             border.color:"transparent"
                             border.width:5
@@ -119,8 +101,10 @@ QQC2.Pane
 
                                 }
                                 Text{
+                                    width:rectContainer.width-20
                                     text:modelData.translation
-                                    anchors.horizontalCenter:parent.horizontalCenter
+                                    horizontalAlignment:Text.AlignHCenter
+                                    wrapMode:Text.WordWrap
                                 }
                             }
                         }
@@ -130,47 +114,7 @@ QQC2.Pane
                 }
 
             }
-
-            /*
-            ListView {
-                id: layoutsView
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                spacing: Kirigami.Units.largeSpacing*2
-                
-                model: config.appsModel
-                
-                focus: true
-                
-                QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
-            
-                delegate:
-                    ColumnLayout {
-                        
-                        RowLayout {
-                            spacing: Kirigami.Units.smallSpacing
-                            
-                            QQC2.CheckBox {
-                                icon.name: modelData.iconName
-                                icon.width: 32
-                                icon.height: 32
-                                
-                                checked: modelData.checked
-                                
-                                onToggled: {
-                                    modelData.checked=checked;
-                                }
-                            }
-                            QQC2.Label {
-                                text: "<b>"+modelData.displayName+"</b>"
-                            }
-                        }
-                        
-                        QQC2.Label {
-                            text: modelData.translation
-                        }
-                    }
-                }*/
+           
         }
     }
   
