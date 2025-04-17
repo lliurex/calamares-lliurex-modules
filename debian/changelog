@@ -1,3 +1,9 @@
+calamares-lliurex-modules (24.5) noble; urgency=medium
+
+  * testing
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Thu, 17 Apr 2025 13:33:52 +0200
+
 calamares-lliurex-modules (24.4) noble; urgency=medium
 
   * Resize form
