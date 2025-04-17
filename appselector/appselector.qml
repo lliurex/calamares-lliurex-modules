@@ -7,8 +7,8 @@ import org.kde.kirigami 2.5 as Kirigami
 QQC2.Pane
 {
     id:paneContainer
-    width: 800
-    height: 400
+    width: parent.width
+    height: parent.height
 
     ColumnLayout {
         Layout.fillWidth: true
