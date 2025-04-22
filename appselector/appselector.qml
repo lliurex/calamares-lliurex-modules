@@ -38,8 +38,9 @@ QQC2.Pane
         Item{
             id:gridContainer
             width:parent.width
-            Layout.minimumHeight:parent.height/2
+            //Layout.minimumHeight:parent.height/2
             Layout.fillHeight:true
+            Layout.fillWidth:true
             Layout.leftMargin:15
             Layout.rightMargin:15
             Layout.alignment:Qt.AlignHCenter
