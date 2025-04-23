@@ -42,28 +42,6 @@ bool AppViewStep::isBackEnabled() const
     return true;
 }
 
-void AppViewStep::next()
-{
-    m_config->m_step=1;
-    emit m_config->stepChanged();
-}
-
-void AppViewStep::back()
-{
-    m_config->m_step=0;
-    emit m_config->stepChanged();
-}
-
-bool AppViewStep::isAtBeginning() const
-{
-    return (m_config->m_step==0);
-}
-
-bool AppViewStep::isAtEnd() const
-{
-    return (m_config->m_step==1);
-}
-
 void AppViewStep::onActivate()
 {
     onRetranslate();

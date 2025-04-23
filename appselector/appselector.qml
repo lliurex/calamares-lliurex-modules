@@ -38,7 +38,7 @@ QQC2.Pane
         Item{
             id:gridContainer
             width:parent.width
-            //Layout.minimumHeight:parent.height/2
+            /*Layout.minimumHeight:parent.height/2*/
             Layout.fillHeight:true
             Layout.fillWidth:true
             Layout.leftMargin:15
@@ -51,10 +51,15 @@ QQC2.Pane
                 height:gridContainer.height
                 cellWidth:180
                 cellHeight:210
+                leftMargin: ( parent.width - ( layoutsView.count *  180 ) ) / 2 
                 model: config.appsModel
                 focus: true
-                QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
+                /*QQC2.ScrollBar.vertical: QQC2.ScrollBar {}*/
+                interactive: false
                 delegate:appDelegate
+                Component.onCompleted:{
+                  width=width + 1
+                }
 
                 Component{
                     id:appDelegate
