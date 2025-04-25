@@ -24,7 +24,7 @@ QQC2.Pane
         QQC2.Label {
             id: explanation
             Layout.fillWidth: true
-            text: config.translate("Select your educational level, and LliureX 25 will be configured with the most suitable software for you")
+            text: config.translate("Select your educational level, and LliureX 25 will be configured with the most suitable software for you.")
             wrapMode:Text.WordWrap
         }
 
@@ -33,6 +33,7 @@ QQC2.Pane
             
             function onAppsModelChanged() {
                 label.text=config.translate("EDUCATION LEVEL");
+                explanation.text=config.translate("Select your educational level, and LliureX 25 will be configured with the most suitable software for you.");
             }
         }
         Item{
