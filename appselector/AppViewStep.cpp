@@ -42,6 +42,20 @@ bool AppViewStep::isBackEnabled() const
     return true;
 }
 
+
+bool AppViewStep::isAtBeginning() const
+{
+    return true;
+}
+
+bool AppViewStep::isAtEnd() const
+{
+    return true;
+}
+
+
+
+
 void AppViewStep::onActivate()
 {
     onRetranslate();

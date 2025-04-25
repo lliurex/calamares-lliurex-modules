@@ -88,7 +88,7 @@ class App: public QObject
 class Config : public QObject
 {
     Q_OBJECT
-    
+    Q_PROPERTY( int step MEMBER m_step NOTIFY stepChanged)
     Q_PROPERTY(QList<QObject *> appsModel MEMBER m_appsModel NOTIFY appsModelChanged)
     
     public:
@@ -103,10 +103,12 @@ class Config : public QObject
     
     Q_INVOKABLE QString translate(QString id);
     
+    int m_step;
     QList<QObject *> m_appsModel;
         
     Q_SIGNALS:
     
+    void stepChanged(); 
     void appsModelChanged();
     
     private:
