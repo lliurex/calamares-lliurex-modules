@@ -27,8 +27,6 @@ class PLUGINDLLEXPORT AppViewStep : public Calamares::QmlViewStep
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;
     
-    void next() override;
-    void back() override;
 
     bool isAtBeginning() const override;
     bool isAtEnd() const override;

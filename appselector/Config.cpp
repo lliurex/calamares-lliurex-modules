@@ -8,7 +8,7 @@
 
 Config::Config(QObject* parent) : QObject(parent)
 {
-    
+	m_step=0;    
 }
 
 void Config::store()

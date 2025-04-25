@@ -24,7 +24,7 @@ QQC2.Pane
         QQC2.Label {
             id: explanation
             Layout.fillWidth: true
-            text: config.translate("Select your educational level, and LliureX 25 will be configured with the most suitable software for you.")
+            text: config.translate("Select your educational level, and LliureX 25 will be configured with the most suitable software for you")
             wrapMode:Text.WordWrap
         }
 
@@ -47,19 +47,20 @@ QQC2.Pane
 
             GridView{
                 id:layoutsView
-                width:gridContainer.width
-                height:gridContainer.height
+                width:gridContainer.width - 1
+                height:gridContainer.height -1 
                 cellWidth:180
                 cellHeight:210
-                leftMargin: ( parent.width - ( layoutsView.count *  180 ) ) / 2 
+		leftMargin: ( parent.width - ( layoutsView.count *  180 ) ) / 2 
+		//topMargin: (parent.height / 2 ) - 100
                 model: config.appsModel
                 focus: true
-                /*QQC2.ScrollBar.vertical: QQC2.ScrollBar {}*/
+                //QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
                 interactive: false
                 delegate:appDelegate
-                Component.onCompleted:{
-                  width=width + 1
-                }
+                /*Component.onCompleted:{
+                  width=layoutsView.width -1
+	  }*/
 
                 Component{
                     id:appDelegate
