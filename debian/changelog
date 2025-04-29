@@ -1,3 +1,9 @@
+calamares-lliurex-modules (24.12) noble; urgency=medium
+
+  * Fix Appselector 
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 29 Apr 2025 09:45:50 +0200
+
 calamares-lliurex-modules (24.11) noble; urgency=medium
 
   * Fix translations label
