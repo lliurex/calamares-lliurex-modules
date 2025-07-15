@@ -6,6 +6,13 @@
 #include <GlobalStorage.h>
 #include <JobQueue.h>
 
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+
+
 CALAMARES_PLUGIN_FACTORY_DEFINITION( AppViewStepFactory, registerPlugin< AppViewStep >(); )
 
 AppViewStep::AppViewStep(QObject* parent) : Calamares::QmlViewStep( parent )
@@ -32,6 +39,27 @@ QString AppViewStep::prettyName() const
     return tr("Software LliureX");
 }
 
+bool AppViewStep::is_oem_mode() {
+    const std::string cmdline_path = "/proc/cmdline";
+    const std::string needle = "oem-config/enable=true";
+
+    std::ifstream cmdline_file(cmdline_path);
+    if (!cmdline_file.is_open()) {
+        std::cerr << "Can't open /proc/cmdline " << cmdline_path << std::endl;
+        return false;
+    }
+
+    std::string cmdline_content;
+    std::getline(cmdline_file, cmdline_content);  // /proc/cmdline es usualmente una sola línea
+    cmdline_file.close();
+
+    return cmdline_content.find(needle) != std::string::npos;
+}
+
+
+
+
+
 bool AppViewStep::isNextEnabled() const
 {
     return true;
@@ -44,23 +72,29 @@ bool AppViewStep::isBackEnabled() const
 
 void AppViewStep::next()
 {
-    m_config->m_step=1;
-    emit m_config->stepChanged();
+	if (not is_oem_mode()){
+	    m_config->m_step=1;
+	    emit m_config->stepChanged();
+	}
 }
 
 void AppViewStep::back()
 {
-    m_config->m_step=0;
-    emit m_config->stepChanged();
+	if (not is_oem_mode()){
+	    m_config->m_step=0;
+	    emit m_config->stepChanged();
+	}
 }
 
 bool AppViewStep::isAtBeginning() const
 {
+    if (is_oem_mode()){ return true;}
     return (m_config->m_step==0);
 }
 
 bool AppViewStep::isAtEnd() const
 {
+    if (is_oem_mode()){ return true;}
     return (m_config->m_step==1);
 }
 
