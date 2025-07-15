@@ -39,7 +39,7 @@ QString AppViewStep::prettyName() const
     return tr("Software LliureX");
 }
 
-bool AppViewStep::is_oem_mode() {
+bool AppViewStep::is_oem_mode() const{
     const std::string cmdline_path = "/proc/cmdline";
     const std::string needle = "oem-config/enable=true";
 
@@ -72,7 +72,7 @@ bool AppViewStep::isBackEnabled() const
 
 void AppViewStep::next()
 {
-	if (not is_oem_mode()){
+	if (not this->is_oem_mode()){
 	    m_config->m_step=1;
 	    emit m_config->stepChanged();
 	}
@@ -80,7 +80,7 @@ void AppViewStep::next()
 
 void AppViewStep::back()
 {
-	if (not is_oem_mode()){
+	if (not this->is_oem_mode()){
 	    m_config->m_step=0;
 	    emit m_config->stepChanged();
 	}
@@ -88,13 +88,13 @@ void AppViewStep::back()
 
 bool AppViewStep::isAtBeginning() const
 {
-    if (is_oem_mode()){ return true;}
+    if (this->is_oem_mode()){ return true;}
     return (m_config->m_step==0);
 }
 
 bool AppViewStep::isAtEnd() const
 {
-    if (is_oem_mode()){ return true;}
+    if (this->is_oem_mode()){ return true;}
     return (m_config->m_step==1);
 }
 

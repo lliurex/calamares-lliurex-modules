@@ -30,7 +30,7 @@ class PLUGINDLLEXPORT AppViewStep : public Calamares::QmlViewStep
     void next() override;
     void back() override;
 
-    bool is_oem_mode();
+    bool is_oem_mode() const;
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
     
