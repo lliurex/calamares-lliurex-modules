@@ -1,3 +1,9 @@
+calamares-lliurex-modules (23.3) jammy; urgency=medium
+
+  * remove step to install inventory on oem mode 
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 15 Jul 2025 15:57:21 +0200
+
 calamares-lliurex-modules (23.2) jammy; urgency=medium
 
   * Add translations to services slide
