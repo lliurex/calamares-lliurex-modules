@@ -16,10 +16,14 @@ def run():
     root = Path(libcalamares.globalstorage.value("rootMountPoint"))
     
     live_list_path = root.joinpath('etc','apt','sources.list.d','live.list')
+    nomodeset_path = root.joinpath('etc','default','grub.d','neon-installation-nomodeset.cfg')
     opensshserver_path = root.joinpath('lib','systemd','system','ssh.service')
 
     if live_list_path.exists():
         live_list_path.unlink()
+
+    if nomodeset_path.exists():
+        nomodeset_path.unlink()
 
     if opensshserver_path.exists():
         target_env_call(['dpkg-reconfigure','openssh-server'])
